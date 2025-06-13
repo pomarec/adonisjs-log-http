@@ -1,0 +1,21 @@
+{{{
+  exports({ to: app.configPath('log_http.ts') })
+}}}
+
+import { Request } from '@adonisjs/core/http'
+import app from '@adonisjs/core/services/app'
+import { defineConfig } from '@akago/adonisjs-log-http'
+
+export default defineConfig({
+  enabled: true,
+
+  /**
+   * Paths which requests won't be logged 
+   */
+  excludedPaths: ['/health', '/favicon.ico'],
+
+  /**
+   * Requests won't be logged
+   */
+  excludedRequest: async (_: Request) => app.inTest,
+})

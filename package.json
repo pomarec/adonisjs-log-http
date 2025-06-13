@@ -1,0 +1,93 @@
+{
+  "name": "@akago/adonisjs-log-http",
+  "description": "Http request logger in console for AdonisJS",
+  "version": "0.1.1",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akago-dev/adonisjs-log-http.git"
+  },
+  "keywords": [
+    "logging",
+    "log",
+    "monitoring",
+    "console",
+    "adonisjs",
+    "adonis"
+  ],
+  "author": "AKAGO",
+  "license": "SEE LICENCE IN LICENCE",
+  "bugs": {
+    "url": "https://github.com/akago-dev/adonisjs-log-http/issues"
+  },
+  "homepage": "https://github.com/akago-dev/adonisjs-log-http#readme",
+  "main": "./build/index.js",
+  "type": "module",
+  "files": [
+    "build",
+    "!build/bin",
+    "!build/tests",
+    "!build/.vscode"
+  ],
+  "exports": {
+    ".": "./build/index.js",
+    "./middleware": "./build/src/middleware.js"
+  },
+  "scripts": {
+    "lint": "eslint",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "clean": "del-cli build",
+    "copy:templates": "copyfiles \"stubs/**/*.stub\"  build",
+    "precompile": "npm run lint && npm run clean",
+    "compile": "tsup-node && tsc --emitDeclarationOnly --declaration && npm run copy:templates",
+    "build": "npm run compile",
+    "version": "npm run build",
+    "prepublishOnly": "npm run build",
+    "release": "npx release-it"
+  },
+  "dependencies": {
+    "@poppinss/utils": "^6.9.4",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@adonisjs/core": "^6.18.0",
+    "@adonisjs/eslint-config": "^2.1.0",
+    "@adonisjs/prettier-config": "^1.4.5",
+    "@adonisjs/tsconfig": "^1.4.1",
+    "@japa/assert": "^4.0.1",
+    "@japa/expect-type": "^2.0.3",
+    "@japa/runner": "^4.2.0",
+    "@swc/core": "^1.11.31",
+    "@types/lodash": "^4.17.17",
+    "@types/node": "^22.15.30",
+    "copyfiles": "^2.4.1",
+    "del-cli": "^6.0.0",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.5.3",
+    "release-it": "^19.0.1",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.8.1",
+    "tsup": "^8.3.6",
+    "typescript": "^5.8.3"
+  },
+  "eslintConfig": {
+    "extends": "@adonisjs/eslint-config/package"
+  },
+  "prettier": "@adonisjs/prettier-config",
+  "tsup": {
+    "entry": [
+      "./index.ts",
+      "./src/middleware.ts"
+    ],
+    "outDir": "./build",
+    "clean": true,
+    "format": "esm",
+    "dts": false,
+    "sourcemap": false,
+    "target": "esnext"
+  }
+}
