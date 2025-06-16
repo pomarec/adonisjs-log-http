@@ -1,7 +1,7 @@
 {
   "name": "@akago/adonisjs-log-http",
   "description": "Http request logger in console for AdonisJS",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publishConfig": {
     "access": "public",
     "tag": "latest"
