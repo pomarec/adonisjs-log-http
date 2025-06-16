@@ -9,14 +9,13 @@
 
 import type { HttpContext } from '@adonisjs/core/http'
 import app from '@adonisjs/core/services/app'
-import logger from '@adonisjs/core/services/logger'
 import kleur from 'kleur'
 import _ from 'lodash'
 import { hrtime } from 'node:process'
 import { LogHTTPConfig } from './define_config.js'
 
 export default class LogHTTP {
-  public async handle({ request, response }: HttpContext, next: () => Promise<void>) {
+  public async handle({ request, response, logger }: HttpContext, next: () => Promise<void>) {
     const config = app.config.get<LogHTTPConfig>('log_http', {})
 
     const path = request.url()
